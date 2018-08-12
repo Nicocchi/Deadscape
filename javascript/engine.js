@@ -70,18 +70,21 @@ function pickup(name) {
         exportLog('<p>You looked around the room but did not find anything to pickup.</p>');
     }
 
+    let item = [];
 
     
     room[0].items.forEach(function(element) {
         if (element.taken === false && element.name === name) {
             player.inventory.push(element.name);
             element.taken = true;
-            exportLog(`<p>You looked for a ${name} and found it.</p>`);
-            return;
+            item.push(element.name);
+            exportLog(`<p>${element.pickupDes}</p>`);
         }
     }); 
     
-    
+    if (item === undefined || item.length <= 0) {
+        return exportLog(`<p>You looked for a ${name} and could not find it.</p>`);
+    }
 }
 
 /**
