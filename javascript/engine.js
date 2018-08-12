@@ -48,6 +48,8 @@ function showHelp() {
  */
 function examineRoom() {
     const room = rooms.filter(roo => roo.name.includes(currentRoom));
+
+    // Check if room is undefined/empty and return the room's examine description.
     if (room[0].items <= 0 || room[0].items === undefined) {
         exportLog(room[0].examineDescription);
         return;
@@ -55,6 +57,7 @@ function examineRoom() {
 
     let items = [];
     
+    // Check each element for an object and return the object's description.
     room[0].items.forEach(function(element) {
         if (element.taken === false) {
             items.push(element.description);
