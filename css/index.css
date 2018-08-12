@@ -12,3 +12,16 @@
 .home h1 {
   text-align: center;
 }
+.home #player-creation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  visibility: visible;
+}
+.home #play-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  visibility: hidden;
+  margin-top: 0;
+}

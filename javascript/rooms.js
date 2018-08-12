@@ -9,6 +9,7 @@ class Room {
     }
 }
 
+// Room Objects
 const rooms = [
     start = new Room ({
         'name': 'start',
