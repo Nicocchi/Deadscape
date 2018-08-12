@@ -46,15 +46,15 @@ function showHelp() {
  * Show the inventory menu
  */
 function showInventory() {
-    if (inventory.length <= 0) {
+    if (player.inventoryIsEmpty()) {
         exportLog('<p>You are not carrying anything.</p>');
         return;
     }
 
     exportLog('<p>Here is your inventory: </p>');
     exportLog('<p><ul>');
-    for (let i = 0; i < inventory.length; i++) {
-        exportLog(`<li> ${inventory[i]} </li>`);
+    for (let i = 0; i < player.inventory.length; i++) {
+        exportLog(`<li> ${player.inventory[i]} </li>`);
     }
     exportLog('</ul></p>');
 }
