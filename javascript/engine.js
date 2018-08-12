@@ -1,6 +1,6 @@
 // TODO: Refactor these from being global
 let currentRoom = 'start';
-const commands = ['go', 'pickup', 'look', 'talk'];
+const commands = ['go', 'pickup', 'examine', 'talk'];
 
 /**
  * Appends the game's text onto the DOM elements
@@ -43,6 +43,48 @@ function showHelp() {
 }
 
 /**
+ * Examines the room for any objects and returns
+ * the first description of any object not picked up.
+ */
+function examineRoom() {
+    const room = rooms.filter(roo => roo.name.includes(currentRoom));
+    if (room[0].items <= 0) {
+        exportLog('<p>You looked around the room but did not find anything.</p>');
+    }
+
+    let items = [];
+    
+    room[0].items.forEach(function(element) {
+        if (element.taken === false) {
+            items.push(element.description);
+        }
+    });
+
+    exportLog(`<p>${items[0]}</p>`);
+
+}
+
+function pickup(name) {
+    const room = rooms.filter(roo => roo.name.includes(currentRoom));
+    if (room[0].items <= 0) {
+        exportLog('<p>You looked around the room but did not find anything to pickup.</p>');
+    }
+
+
+    
+    room[0].items.forEach(function(element) {
+        if (element.taken === false && element.name === name) {
+            player.inventory.push(element.name);
+            element.taken = true;
+            exportLog(`<p>You looked for a ${name} and found it.</p>`);
+            return;
+        }
+    }); 
+    
+    
+}
+
+/**
  * Show the inventory menu
  */
 function showInventory() {
@@ -76,6 +118,13 @@ function playerInput(input) {
         break;
         case 'inventory':
             showInventory();
+        break;
+        case 'examine':
+            examineRoom();
+        break;
+        case 'pickup':
+            const item = input.split(' ')[1];
+            pickup(item);
         break;
         default:
             exportLog('<p>Invalid command</p>');

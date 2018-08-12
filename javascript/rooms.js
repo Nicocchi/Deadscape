@@ -18,7 +18,15 @@ const rooms = [
             'north': 'clearing1',
             'south': 'clearing2'
         },
-        'items': {},
+        'items': [{ 
+            'name': 'key',
+            'description': 'You see a shiny metalic object in the far distance.',
+            'taken': false
+        }, {
+            'name':  'bat',
+            'description': 'You see a wooden object with a baseball ingraved onto it.',
+            'taken': false
+        }],
         'npcs': {}
     }),
     
