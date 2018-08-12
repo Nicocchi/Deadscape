@@ -48,8 +48,9 @@ function showHelp() {
  */
 function examineRoom() {
     const room = rooms.filter(roo => roo.name.includes(currentRoom));
-    if (room[0].items <= 0) {
-        exportLog('<p>You looked around the room but did not find anything.</p>');
+    if (room[0].items <= 0 || room[0].items === undefined) {
+        exportLog(room[0].examineDescription);
+        return;
     }
 
     let items = [];
@@ -64,15 +65,21 @@ function examineRoom() {
 
 }
 
+// Pickup's an object if it is in the room
 function pickup(name) {
     const room = rooms.filter(roo => roo.name.includes(currentRoom));
-    if (room[0].items <= 0) {
+    if (room[0].items <= 0 || room[0].items === undefined) {
         exportLog('<p>You looked around the room but did not find anything to pickup.</p>');
+        return;
     }
 
     let item = [];
 
-    
+    /**
+     *  Loop through each item and if it exists and is not taken
+     *  then add it to the inventory, and make the 'taken' property
+     * to true.
+     */
     room[0].items.forEach(function(element) {
         if (element.taken === false && element.name === name) {
             player.inventory.push(element.name);
@@ -83,7 +90,7 @@ function pickup(name) {
     }); 
     
     if (item === undefined || item.length <= 0) {
-        return exportLog(`<p>You looked for a ${name} and could not find it.</p>`);
+        return exportLog(`<p>You looked for a <b>${name}</b> and could not find it.</p>`);
     }
 }
 
