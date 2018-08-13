@@ -7,6 +7,7 @@ class Character {
         this.charLeftHand = params.charLeftHand;
         this.charRightHand = params.charRightHand;
         this.charReady = params.charReady;
+        this.charMoves = params.charMoves;
     }
 
     // Getters and Setters
@@ -46,6 +47,14 @@ class Character {
 
     set leftHand(item) {
         this.charLeftHand.push(item);
+    }
+
+    get moves() {
+        return this.charMoves;
+    }
+
+    set moves(val) {
+        this.charMoves += val;
     }
 
     // Methods
@@ -122,5 +131,6 @@ let player = new Character ({
     'charInventory': [],
     'charLeftHand': 'nothing',
     'charRightHand': 'nothing',
-    'charReady': false
+    'charReady': false,
+    'charMoves': 0
 });

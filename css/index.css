@@ -1,3 +1,8 @@
+body {
+  background: #333;
+  color: #c95508;
+  font-family: 'Roboto Mono', monospace;
+}
 .container {
   max-width: 700px;
   width: 100%;
@@ -11,6 +16,20 @@
 }
 .home h1 {
   text-align: center;
+}
+.home input {
+  width: 100%;
+  border: 0;
+  background: #333;
+  color: #c95508;
+  font-family: 'Roboto Mono', monospace;
+}
+.home .input-area {
+  display: flex;
+  width: 100%;
+}
+.home .input-area p {
+  margin-right: 2%;
 }
 .home #player-creation {
   display: flex;

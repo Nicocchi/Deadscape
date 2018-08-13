@@ -121,6 +121,9 @@ function showInventory() {
 function playerInput(input) {
     const command = input.split(' ')[0];
 
+    player.moves =+ 1;
+    $('#status-moves').text(`Moves: ${player.moves}`);
+
     switch(command) {
         case 'go':
             const dir = input.split(' ')[1];
@@ -149,7 +152,8 @@ function playerName(input) {
         player.name = input;
 
         // TODO: Refactor these appends
-        $('#console-text1').append(`<p>You are ${player.name} </p>`);
+        $('#console-text1').append(`<p>You are <b>${player.name}</b> </p>`);
+        $('#player-name').attr('placeholder','Please type your command...');
         $('#console-text1').append(`<p>Type start to start the game.</p>`);
         return;
     }
@@ -189,7 +193,7 @@ $(document).ready(function() {
                 playerInput(value);
             }
         } else if (key.which === 13 && $('#player-name').is(':focus')) {
-            let value = $('#player-name').val().toLowerCase();
+            let value = $('#player-name').val();
             $('#player-name').val('');
             playerName(value);
         }
