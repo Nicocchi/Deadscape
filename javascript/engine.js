@@ -193,7 +193,7 @@ $(document).ready(function() {
                 playerInput(value);
             }
         } else if (key.which === 13 && $('#player-name').is(':focus')) {
-            let value = $('#player-name').val();
+            let value = $('#player-name').val().toLowerCase();
             $('#player-name').val('');
             playerName(value);
         }
