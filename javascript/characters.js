@@ -91,6 +91,7 @@ class Character {
         }
     }
     equipRightHand(item) {
+        const index = this.charInventory.indexOf(item);
         if (this.rightHandIsEmpty()) {
             this.charRightHand.push(item);
         }
@@ -98,6 +99,9 @@ class Character {
             this.removeRightHand();
             this.charRightHand.push(item);
         }
+
+        this.charInventory.splice(index, 1);
+        exportLog(`<p><b>${item}</b> has been equipped to the right hand.</p>`);
     }
 
     // Left Hand
@@ -115,6 +119,7 @@ class Character {
         }
     }
     equipLefttHand(item) {
+        const index = this.charInventory.indexOf(item);
         if (this.leftHandIsEmpty()) {
             this.charLeftHand.push(item);
         }
@@ -122,6 +127,9 @@ class Character {
             this.removeLeftHand();
             this.charLeftHand.push(item);
         }
+
+        this.charInventory.splice(index, 1);
+        exportLog(`<p><b>${item}</b> has been equipped to the left hand.</p>`);
     }
 }
 
